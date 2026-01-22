@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LayoutDashboard, History, X } from "lucide-vue-next"; // นำเข้าไอคอน
+import { LayoutDashboard, History, X } from "lucide-vue-next";
 
 defineProps<{ isOpen: boolean }>();
 const emit = defineEmits(["close"]);

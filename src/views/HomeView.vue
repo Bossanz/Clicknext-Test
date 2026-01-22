@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import DashboardLayout from '../layouts/DashboardLayout.vue'
+import DashboardLayout from "../layouts/DashboardLayout.vue";
 </script>
 
 <template>
-  <DashboardLayout>
-    </DashboardLayout>
+  <DashboardLayout> </DashboardLayout>
 </template>

@@ -1,69 +1,74 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-// ประกาศ Event เพื่อส่งค่ากลับไปให้ตัวแม่ (LoginView)
 const emit = defineEmits<{
-  (e: 'submit', payload: { email: string }): void
-}>()
+  (e: "submit", payload: { email: string }): void;
+}>();
 
-const email = ref('')
-const password = ref('')
-const emailError = ref('')
+const email = ref("");
+const password = ref("");
+const emailError = ref("");
 
-// ฟังก์ชัน Validate Email (อยู่ติดกับ Input)
 const validateEmail = (input: string) => {
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  return emailPattern.test(input)
-}
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailPattern.test(input);
+};
 
 const onSubmit = () => {
-  emailError.value = ''
+  emailError.value = "";
 
-  // 1. เช็ค Validate Email ที่นี่
   if (!validateEmail(email.value)) {
-    emailError.value = 'กรุณากรอกรูปแบบ Email ให้ถูกต้อง'
-    return
+    emailError.value = "กรุณากรอกรูปแบบ Email ให้ถูกต้อง";
+    return;
   }
 
-  // 2. เช็ค Password
   if (!password.value) {
-    alert('กรุณากรอกรหัสผ่าน')
-    return
+    alert("กรุณากรอกรหัสผ่าน");
+    return;
   }
 
-  // ถ้าผ่านหมด ส่งค่า email กลับไปให้ตัวแม่ทำงานต่อ
-  emit('submit', { email: email.value })
-}
+  emit("submit", { email: email.value });
+};
 </script>
 
 <template>
-  <div class="w-full max-w-[400px] bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-    <h1 class="text-2xl font-semibold text-center mb-8 text-gray-800">Clicknext</h1>
-    
+  <div
+    class="w-full max-w-[400px] bg-white p-8 rounded-xl shadow-sm border border-gray-100"
+  >
+    <h1 class="text-2xl font-semibold text-center mb-8 text-gray-800">
+      Clicknext
+    </h1>
+
     <div class="space-y-6">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
-        <input 
+        <label class="block text-sm font-medium text-gray-700 mb-2"
+          >Email *</label
+        >
+        <input
           v-model="email"
-          type="email" 
+          type="email"
           placeholder="Email"
           class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 outline-none transition-all"
-          :class="{'border-red-500': emailError}"
+          :class="{ 'border-red-500': emailError }"
         />
-        <p v-if="emailError" class="text-red-500 text-xs mt-1">{{ emailError }}</p>
+        <p v-if="emailError" class="text-red-500 text-xs mt-1">
+          {{ emailError }}
+        </p>
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Password *</label>
-        <input 
+        <label class="block text-sm font-medium text-gray-700 mb-2"
+          >Password *</label
+        >
+        <input
           v-model="password"
-          type="password" 
+          type="password"
           placeholder="Password"
           class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 outline-none transition-all"
         />
       </div>
 
-      <button 
+      <button
         @click="onSubmit"
         class="w-full bg-slate-800 text-white font-medium py-3 rounded-lg hover:bg-slate-900 active:scale-[0.98] transition-all mt-4"
       >
