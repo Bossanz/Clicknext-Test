@@ -48,7 +48,7 @@
 
 1.  **Clone โปรเจกต์**
     ```bash
-    git clone [https://github.com/Bossanz/Clicknext-Test.git](https://github.com/Bossanz/Clicknext-Test.git)
+    git clone https://github.com/Bossanz/Clicknext-Test.git
     cd clicknext-test-vue
     ```
 
